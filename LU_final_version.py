@@ -1,5 +1,5 @@
-"""LU base component - based on  00_LU_base_v2 (this version is the same as v3 with new name)
-Adding instructions to instructions function and further text decoration
+"""LU base component - based on  00_LU_base_v3
+Fixed pep8 errors and made sure my code fully works
 
 """
 import random
@@ -11,7 +11,7 @@ def yes_no(question_text):
     while True:
 
         # Ask the user if they have played before
-        answer = input("Have you played this game before?: ").lower()
+        answer = input(question_text).lower()
 
         # If they say yes, output 'Program Continues'
         if answer == "yes" or answer == "y":
@@ -38,13 +38,13 @@ def instructions():
           "be a horse, a zebra, a donkey, or a unicorn")
     print()
     print("It cost $1 to play each round but, depending on your prize, you "
-          "could win some om your money back. These are the payout amounts:\n"
+          "could win some of your money back. These are the payout amounts:\n"
           "\tUnicorn: $5 (balance increases by $4\n"
           "\tHorse $0.50 (balance decreases by $0.5\n"
           "\tZebra $0.50 (balance decreases by $0.5\n" 
           "\tDonkey $0.00 (balance decreases by $1\n")
     print("\nSee if you can avoid donkeys, get the unicorns, and finish with "
-          "more money then you started with.\n")
+          "more money than you started with.\n")
 
     print("*" * 50)
     print()
@@ -78,9 +78,9 @@ def generate_token(balance):
 
     # Testing loop to generate 5 tokens
     while play_again != "x":
-        rounds_played += 1 # keep track of rounds
+        rounds_played += 1  # keep track of rounds
         print(formatter(".", f"Round {rounds_played}"))
-        number = random.randint(1, 100) # can only be donkey
+        number = random.randint(1, 100)  # can only be donkey
 
         # adjust balance
         # if the random number is between 1 and 5
@@ -101,7 +101,7 @@ def generate_token(balance):
         # (subtract $0.50 from the balance in either cases)
         else:
             # if the number is even, set the token to zebra
-            if number %2 == 0:
+            if number % 2 == 0:
                 balance -= 0.5
                 print(formatter("I", "Nice try, you got a zebra"))
                 print()
@@ -112,17 +112,16 @@ def generate_token(balance):
                 print(formatter("#", "oh no, you got a horse"))
                 print()
 
-
-
         # output
         print(f"Your balance is: ${balance:.2f}")
         if balance < 1:
             print("\nSorry but you have run out of money")
             play_again = "x"
         else:
-            play_again = input(f"Your balance is ${balance:.2f}\n"
-                           f"Do you want to continue? 'y' or 'x' to exit: ")
+            play_again = input(f"Your balance is ${balance:.2f}\nDo you want to continue? 'y' or 'x' to exit: ")
+
     return balance
+
 
 # function to format text output
 def formatter(symbol, text):
@@ -145,7 +144,6 @@ if played_before == "No":
 # ask the user how much they want to play with
 starting_balance = num_check("How much would you like to play with $", 1, 10)
 print(f"you are playing with ${starting_balance}")
-
 
 
 closing_balance = generate_token(starting_balance)
